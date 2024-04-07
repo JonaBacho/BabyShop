@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Ecommerce project using modern technologies:-
 
 ---
@@ -35,3 +36,7 @@ To create a production build:
 ```sh
 npm run build
 ```
+=======
+# BabyShop
+Site ecommerce de vente d'articles poour bébé avec react js et php
+>>>>>>> 9aca3184e2786064593d2868318be651e8044acc
