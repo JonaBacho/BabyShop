@@ -1,0 +1,19 @@
+.user-icon {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  .username,
+  .logout {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  
+  .logout {
+    cursor: pointer;
+  }
+  
+  .user-bar {
+    background-color: #343a40; /* Dark blue background color */
+    color: #ffffff; /* White text color */
+    padding: 10px; /* Adjust the padding as needed */
+  }
+  
