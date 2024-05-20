@@ -9,10 +9,14 @@ use Illuminate\Http\Request;
 
 class ProduitCategorieController extends Controller
 {
+    // toutes les catégories
     public function categories(){
 
         $categoryList=ProduitCategorieResource::collection(Categorie::all());
 
         return response()->json($categoryList,200);
     }
+
+    // catégories d'un produit
+    
 }

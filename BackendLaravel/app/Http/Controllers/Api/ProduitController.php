@@ -9,23 +9,27 @@ use Illuminate\Http\Request;
 
 class ProduitController extends Controller
 {
-    public function ProduitsHome()
+    // tous les produits pour la page d'acceuil
+    public function ProduitsHome(Request $request)
     {
         return ProduitResource::collection(Produit::where('actif', 1)->paginate(8));
     }
 
+    // Produits d'une catégorie dont l'id est passé dans l'url
     public function categorieProduit(Request $request)
     {
-        $category_id = $request->category_id;
-        $category_product = Produit::where('idCategorie', $category_id)->where('actif', 1)->get();
-        return ProduitResource::collection($category_product);
+        $category_product = Produit::where('idCategorie', $request->idCategorie)->where('actif', 1)->get();
+        $finalResult = ProduitResource::collection($category_product);
+        return response()->json($finalResult, 200);
     }
 
+
+    // details d'un produit dont on connait le codePro
     public function produitDetails(Request $request)
     {
-        $productDetails = Produit::with('categorie')->with('photo')->find($request->id);
+        $productDetails = Produit::where('codePro', $request->codePro)->with('categorie')->with('photo');
 
 //        return $productDetails = Product::with('productCategory')->with('productImage')->find($request->id);
-        return response()->json($productDetails);
+        return response()->json($productDetails, 200);
     }
 }
