@@ -21,13 +21,44 @@ import Footer from '../components/Footer/Footer.jsx';
 import ScrollToTop from '../utils/ScrollToTop.js';
 
 const AllProductsPage = () => {
-  const { products } = useSelector((state) => state.products);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    const fetchData = async () => {
+      try {
+        const response = await axiosClient.get('home/produits');
+    
 
+        const data = response.data.data;
+
+        const transformedData = data.map(item => ({
+          id: item.codePro,
+          image: item.imageUrl,
+          name: item.nomPro,
+          price: item.prix,
+          oldPrice: item.ancienPrix,
+          stars: item.etoile
+        }));
+    
+        setProducts(transformedData);
+
+        // Affichage ou utilisation de la liste transformée
+      console.log(transformedData);
+      setLoading(false);
+
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+        setLoading(true);
+
+      } 
+    };
+
+    fetchData();
+
+  }, []);
   const _products = [
     {
         id: 1,
@@ -122,8 +153,7 @@ console.log(products);
       <CartSidebar />
       <Sidebar />
       <Banner image={productsBanner} />
-      <AllProducts products={_products} />
-      <ClientSlider />
+      <AllProducts products={products} />
     </>
   );
 };

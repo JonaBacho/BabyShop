@@ -17,8 +17,6 @@ import Navbar from '../components/Navbar/Navbar.jsx'
 import CartSidebar from '../components/CartSidebar/CartSidebar.jsx';
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
 import Footer from '../components/Footer/Footer.jsx';
-
-
 // scroll to top component
 import Loading from '../components/Loading/Loading';
 import ScrollToTop from '../utils/ScrollToTop';
@@ -27,13 +25,19 @@ import ScrollToTop from '../utils/ScrollToTop';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosClient.get('home/produits');
+        const response2 = await axiosClient.get('home/categories');
+
         const data = response.data.data;
+        const data2 = response2.data.data;
+
         const transformedData = data.map(item => ({
           id: item.codePro,
           image: item.imageUrl,
@@ -42,7 +46,15 @@ const HomePage = () => {
           oldPrice: item.ancienPrix,
           stars: item.etoile
         }));
+        const transformedData2 = data2.map(item => ({
+          id: item.idCat,
+          image: item.imageUrl,
+          name: item.nomCat,
+          
+        }));
         setProducts(transformedData);
+        setCategories(transformedData2);
+
         // Affichage ou utilisation de la liste transformée
       console.log(transformedData);
       setLoading(false);
@@ -76,7 +88,7 @@ if (loading) {
     <CartSidebar />
     <Sidebar />
     <MainBanner />
-    <Categories />
+    <Categories categories={categories}/>
     <BestProducts bestProducts={products} />
     <Loading />
     <Hero
