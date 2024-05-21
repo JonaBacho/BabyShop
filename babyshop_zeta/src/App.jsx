@@ -20,25 +20,17 @@ import {
   Error,
   Login,
   Signup,
-  CashierCategories,
-  KeeperCategories,
-  CashierStocks,
-  KeeperStocks,
-  CashierProducts,
-  KeeperProducts,
-  CashierInvoice,
   NewCategory,
+  AdminHome,
+  AdminCategory,
+  AdminProduct,
+  AdminInvoice,
+  AdminStocks,
+
 } from './pages';
-
-// components
-import Navbar from './components/Navbar/Navbar';
-import CartSidebar from './components/CartSidebar/CartSidebar';
-import Sidebar from './components/Sidebar/Sidebar';
-import Footer from './components/Footer/Footer';
+import AdminNewCategory from './components/AdminNewCategory/AdminNewCategory.jsx';
 
 
-// scroll to top component
-import ScrollToTop from './utils/ScrollToTop';
 
 
 function App() {
@@ -46,10 +38,7 @@ function App() {
 
   return (
     <Router>
-      <ScrollToTop />
-      <Navbar />
-      <CartSidebar />
-      <Sidebar />
+      
       <Routes>
         <Route exact path="/" element={<Home />}/>
         <Route exact path="/dresses" element={<Dresses />}/>
@@ -70,27 +59,24 @@ function App() {
         <Route path="/products"  element={<AllProducts />}/>
 
         <Route path="/products/:id" element={<SingleProduct />} />
-
-        <Route exact path="/cashiercategories"  element={<CashierCategories />}/>
-          
-        <Route exact path="/keepercategories"  element={<KeeperCategories />}/>
-
-        <Route exact path="/cashierstocks"  element={<CashierStocks />}/>
-          
-        <Route exact path="/keeperstocks"  element={<KeeperStocks />}/>
-          
-        <Route exact path="/cashierproducts"  element={<CashierProducts />}/>
-          
-        <Route exact path="/keeperproducts"  element={<KeeperProducts />}/>
-
-        <Route exact path="/cashierinvoice"  element={<CashierInvoice />}/>
-          
+ 
         <Route exact path="/newcategory"  element={<NewCategory />}/>
-          
+
+        <Route exact path="/admin/home"  element={<AdminHome/>}/>
+
+        <Route exact path="/admin/category"  element={<AdminCategory/>}/>
+
+        <Route exact path="/admin/product"  element={<AdminProduct/>}/>
+
+        <Route exact path="/admin/stocks"  element={<AdminStocks/>}/>
+
+
+        <Route exact path="/admin/invoice"  element={<AdminInvoice/>}/>
+        <Route path="/new-category" element={<AdminNewCategory/>} />
+
       
         <Route path="*"  element={<Error />}/>
       </Routes>
-      <Footer />
     </Router>
     
   )

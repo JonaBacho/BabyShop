@@ -1,51 +1,77 @@
-import React from 'react';
-import { BsSearch } from 'react-icons/bs'; // Import BsSearch icon from React Icons
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaHome, FaBoxOpen, FaChartLine, FaThList, FaFileInvoice } from 'react-icons/fa';
+import './AdminNavbar.css';
 
 const AdminNavbar = () => {
-    return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">
-                    <img src= "/src/assets/images/logo_baby.png" width= "20"></img>Babyshop
-                </a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Products</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Stocks</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">About us</a>
-                        </li>
+  const [active, setActive] = useState('');
 
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#">Dresses</a></li>
-                                <li><a className="dropdown-item" href="#">Shoes</a></li>
-                                <li><a className="dropdown-item" href="#">Toys</a></li>
-                                <li><a className="dropdown-item" href="#">Accessories</a></li>
-                            </ul>
-                        </li>
-        
-                    </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success" type="submit"><BsSearch /></button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    );
+  const handleClick = (name) => {
+    setActive(name);
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <NavLink className="navbar-brand" to="/">Baby Shop 
+        <img src='/src/assets/images/logo_baby.png' style={{ width: '50px', height: 'auto' }}/> </NavLink>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav w-100 justify-content-around">
+            <li className="nav-item">
+              <NavLink 
+                className={`nav-link ${active === 'home' ? 'active' : ''}`} 
+                to="/admin/home" 
+                onClick={() => handleClick('home')}
+              >
+                <FaHome className="me-2" /> Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={`nav-link ${active === 'products' ? 'active' : ''}`} 
+                to="/admin/product" 
+                onClick={() => handleClick('products')}
+              >
+                <FaBoxOpen className="me-2" /> Products
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={`nav-link ${active === 'stocks' ? 'active' : ''}`} 
+                to="/admin/stocks" 
+                onClick={() => handleClick('stocks')}
+              >
+                <FaChartLine className="me-2" /> Stocks
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={`nav-link ${active === 'categories' ? 'active' : ''}`} 
+                to="/admin/category" 
+                onClick={() => handleClick('categories')}
+              >
+                <FaThList className="me-2" /> Categories
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                className={`nav-link ${active === 'invoice' ? 'active' : ''}`} 
+                to="/admin/invoice" 
+                onClick={() => handleClick('invoice')}
+              >
+                <FaFileInvoice className="me-2" /> Invoice
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default AdminNavbar;
+

@@ -1,9 +1,11 @@
+import React from 'react'
+
+
 import AdminButtons from "../components/AdminButtons/AdminButtons.jsx";
 import AdminCategory from "../components/AdminCategory/AdminCategory.jsx";
 import AdminCategoryContainer from "../components/AdminCategoryContainer/AdminCategoryContainer.jsx";
 import AdminCustomerInfo from "../components/AdminCustomerInfo/AdminCustomerInfo.jsx";
 import AdminInfoBar from "../components/AdminInfobar/AdminInfobar.jsx";
-import AdminNavbar from "../components/AdminNavbar/AdminNavbar.jsx";
 import AdminNewCategory from "../components/AdminNewCategory/AdminNewCategory.jsx";
 import AdminStocksTable from "../components/AdminStocksTable/AdminStocksTable.jsx";
 import AdminProductsTable from "../components/AdminProductsTable/AdminProductsTable.jsx";
@@ -11,6 +13,7 @@ import AdminProductDetails from "../components/AdminProductDetails/AdminProductD
 import { useState } from 'react';
 import AdminArticleSlider from "../components/AdminArticleSlider/AdminArticleSlider.jsx";
 import AdminInvoiceInfo from "../components/AdminInvoiceInfo/AdminInvoiceInfo.jsx";
+import StocksSearchBar from '../components/StocksSearchBar/StocksSearchBar.jsx';
 
 
 const categories = [
@@ -26,7 +29,7 @@ const stocks = [
 ];
 
 
-const CashierCategories = () => {
+const AdminStocks = () => {
   
 
   const [products, setProducts] = useState([
@@ -54,31 +57,36 @@ const CashierCategories = () => {
 
   return (
     <div>
-      <h1>ErrorPage</h1>
       <AdminInfoBar/>
-      <AdminNavbar/>
-      <AdminButtons/>
-      <AdminCategoryContainer categories={categories} />
-      <AdminNewCategory/>
-      <h1 className="my-4">Admin Stocks</h1>
-      <AdminStocksTable stocks={stocks} />
-      <h1 className="my-4">Admin Invoice page</h1>
-
-      <AdminCustomerInfo/>
-      <AdminProductDetails product={selectedProduct} onQuantityChange={handleQuantityChange} />
-      <AdminArticleSlider product = {selectedProduct}></AdminArticleSlider>
-      <AdminProductsTable products={products} onProductSelect={handleProductSelect}/>
-      <AdminInvoiceInfo 
-        total={total}
-        amountToPay={total }
-        receivedAmount={0}
-        remainder={0}/>
+      <div className='container' style={{ display: 'flex',justifyContent: 'space-between', padding: '10px', }}>
+        <StocksSearchBar/>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-primary">Print out</button>
+                
+            </div>
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <button type="button" class="btn btn-primary">Refresh</button>
+            </div>
       
-
-      
-      
+        </div>
+      </div>
+      <AdminStocksTable stocks={stocks} /> 
+      <nav className = "container my-4" aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>     
     </div>
   );
 };
 
-export default CashierCategories;
+export default AdminStocks;

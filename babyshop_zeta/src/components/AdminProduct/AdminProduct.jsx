@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AdminCategory = ({ name, image, count }) => {
+const AdminProduct = ({ name, image, count }) => {
   const [quantity, setQuantity] = useState(count);
 
   const handleIncrement = () => {
@@ -20,11 +20,14 @@ const AdminCategory = ({ name, image, count }) => {
         <h5 className="card-title">{name}</h5>
         <p className="card-text">Quantity: {quantity}</p>
         <div className="btn-group" role="group" aria-label="Quantity">
-          <span className="btn btn-light border">{quantity}</span>
+            <button type="button" className="btn btn-secondary border" onClick= {handleIncrement}>+</button>
+            <span className="btn btn-light border">{quantity}</span>
+            <button type="button" className="btn btn-secondary border" onClick= {handleDecrement}>-</button>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminCategory;
+export default AdminProduct;

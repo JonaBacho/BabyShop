@@ -1,15 +1,25 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchProducts } from '../redux/products/products_actions';
+import { fetchProducts } from '../redux/products/products_actions.js';
 
-import Product from '../components/Product/Product';
-import Banner from '../components/Banner/Banner';
-import Title from '../components/Title/Title';
-import Hero from '../components/Hero/Hero';
-import ClientSlider from '../components/ClientSlider/ClientSlider';
+import Product from '../components/Product/Product.jsx';
+import Banner from '../components/Banner/Banner.jsx';
+import Title from '../components/Title/Title.jsx';
+import Hero from '../components/Hero/Hero.jsx';
+import ClientSlider from '../components/ClientSlider/ClientSlider.jsx';
 
 import Toybanner from '../assets/images/BannerTOYS.png';
+
+// components
+import Navbar from '../components/Navbar/Navbar.jsx'
+import CartSidebar from '../components/CartSidebar/CartSidebar.jsx';
+import Sidebar from '../components/Sidebar/Sidebar.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+
+
+// scroll to top component
+import ScrollToTop from '../utils/ScrollToTop.js';
 
 const ToysPage = () => {
   const { products } = useSelector((state) => state.products);
@@ -25,6 +35,10 @@ const ToysPage = () => {
 
   return (
     <>
+      <ScrollToTop />
+      <Navbar />
+      <CartSidebar />
+      <Sidebar />
       <Banner image={Toybanner} />
       <section className="py-5">
         <div className="container">
@@ -50,7 +64,8 @@ const ToysPage = () => {
         title="Where tiny treasures await your sweetest kiss."
         text="Discover enchanting dresses and accessories, made for your little miss!"
       />
-      <ClientSlider />
+      <Footer />
+      
     </>
   );
 };

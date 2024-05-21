@@ -3,7 +3,6 @@ import AdminCategory from "../components/AdminCategory/AdminCategory.jsx";
 import AdminCategoryContainer from "../components/AdminCategoryContainer/AdminCategoryContainer.jsx";
 import AdminCustomerInfo from "../components/AdminCustomerInfo/AdminCustomerInfo.jsx";
 import AdminInfoBar from "../components/AdminInfobar/AdminInfobar.jsx";
-import AdminNavbar from "../components/AdminNavbar/AdminNavbar.jsx";
 import AdminNewCategory from "../components/AdminNewCategory/AdminNewCategory.jsx";
 import AdminStocksTable from "../components/AdminStocksTable/AdminStocksTable.jsx";
 import AdminProductsTable from "../components/AdminProductsTable/AdminProductsTable.jsx";
@@ -56,7 +55,6 @@ const CashierCategories = () => {
     <div>
       <h1>ErrorPage</h1>
       <AdminInfoBar/>
-      <AdminNavbar/>
       <AdminButtons/>
       <AdminCategoryContainer categories={categories} />
       <AdminNewCategory/>

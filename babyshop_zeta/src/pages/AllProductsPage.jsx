@@ -1,14 +1,24 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchProducts } from '../redux/products/products_actions';
+import { fetchProducts } from '../redux/products/products_actions.js';
 
-import Banner from '../components/Banner/Banner';
-import AllProducts from '../components/AllProducts/AllProducts';
-import ClientSlider from '../components/ClientSlider/ClientSlider';
+import Banner from '../components/Banner/Banner.jsx';
+import AllProducts from '../components/AllProducts/AllProducts.jsx';
+import ClientSlider from '../components/ClientSlider/ClientSlider.jsx';
 import image_product from './shoes.jpg';
 
+
 import productsBanner from '../assets/images/BANNERProduct.png';
+// components
+import Navbar from '../components/Navbar/Navbar.jsx'
+import CartSidebar from '../components/CartSidebar/CartSidebar.jsx';
+import Sidebar from '../components/Sidebar/Sidebar.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+
+
+// scroll to top component
+import ScrollToTop from '../utils/ScrollToTop.js';
 
 const AllProductsPage = () => {
   const { products } = useSelector((state) => state.products);
@@ -107,6 +117,10 @@ console.log(products);
 
   return (
     <>
+      <ScrollToTop />
+      <Navbar />
+      <CartSidebar />
+      <Sidebar />
       <Banner image={productsBanner} />
       <AllProducts products={_products} />
       <ClientSlider />

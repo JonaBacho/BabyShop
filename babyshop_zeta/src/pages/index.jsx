@@ -11,14 +11,14 @@ import SingleProduct from './SingleProductPage';
 import Error from './ErrorPage';
 import Login from './LoginPage';
 import Signup from './SignupPage';
-import CashierCategories from './CashierCategoriesPages';
-import CashierInvoice from './CashierInvoicePage';
-import CashierProducts from './CashierProductsPage';
-import CashierStocks from './CashierStocksPage';
-import KeeperCategories from './KeeperCategoriesPages';
-import KeeperProducts from './KeeperProductsPage';
-import KeeperStocks from './KeeperStocksPage';
 import NewCategory from './NewCategoryPage';
+import AdminHome from './AdminHomePage';
+import AdminCategory from './AdminCategoryPage';
+import AdminProduct from './AdminProductPage';
+import AdminInvoice from './AdminInvoicePage';
+import AdminStocks from './AdminStocksPage.jsx';
+
+
 
 
 export {
@@ -35,12 +35,11 @@ export {
   Error,
   Login,
   Signup,
-  CashierCategories,
-  CashierInvoice,
-  CashierProducts,
-  CashierStocks,
-  KeeperCategories,
-  KeeperProducts,
- KeeperStocks,
-  NewCategory ,
+  NewCategory,
+  AdminHome,
+  AdminCategory,
+  AdminProduct,
+  AdminInvoice,
+  AdminStocks
+  
 };

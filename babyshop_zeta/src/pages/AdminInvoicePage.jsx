@@ -1,9 +1,9 @@
+import React from 'react'
 import AdminButtons from "../components/AdminButtons/AdminButtons.jsx";
 import AdminCategory from "../components/AdminCategory/AdminCategory.jsx";
 import AdminCategoryContainer from "../components/AdminCategoryContainer/AdminCategoryContainer.jsx";
 import AdminCustomerInfo from "../components/AdminCustomerInfo/AdminCustomerInfo.jsx";
 import AdminInfoBar from "../components/AdminInfobar/AdminInfobar.jsx";
-import AdminNavbar from "../components/AdminNavbar/AdminNavbar.jsx";
 import AdminNewCategory from "../components/AdminNewCategory/AdminNewCategory.jsx";
 import AdminStocksTable from "../components/AdminStocksTable/AdminStocksTable.jsx";
 import AdminProductsTable from "../components/AdminProductsTable/AdminProductsTable.jsx";
@@ -11,6 +11,7 @@ import AdminProductDetails from "../components/AdminProductDetails/AdminProductD
 import { useState } from 'react';
 import AdminArticleSlider from "../components/AdminArticleSlider/AdminArticleSlider.jsx";
 import AdminInvoiceInfo from "../components/AdminInvoiceInfo/AdminInvoiceInfo.jsx";
+import AdminNavbar from '../components/AdminNavbar/AdminNavbar.jsx';
 
 
 const categories = [
@@ -26,7 +27,7 @@ const stocks = [
 ];
 
 
-const CashierCategories = () => {
+const AdminInvoice = () => {
   
 
   const [products, setProducts] = useState([
@@ -54,16 +55,8 @@ const CashierCategories = () => {
 
   return (
     <div>
-      <h1>ErrorPage</h1>
-      <AdminInfoBar/>
       <AdminNavbar/>
-      <AdminButtons/>
-      <AdminCategoryContainer categories={categories} />
-      <AdminNewCategory/>
-      <h1 className="my-4">Admin Stocks</h1>
-      <AdminStocksTable stocks={stocks} />
       <h1 className="my-4">Admin Invoice page</h1>
-
       <AdminCustomerInfo/>
       <AdminProductDetails product={selectedProduct} onQuantityChange={handleQuantityChange} />
       <AdminArticleSlider product = {selectedProduct}></AdminArticleSlider>
@@ -81,4 +74,4 @@ const CashierCategories = () => {
   );
 };
 
-export default CashierCategories;
+export default AdminInvoice;

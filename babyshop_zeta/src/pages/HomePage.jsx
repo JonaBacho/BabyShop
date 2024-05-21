@@ -1,17 +1,26 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useQuery } from 'react-query';
-import axiosClient from '../axios-client';
+import axiosClient from '../axios-client.js';
 
-import { fetchProducts } from '../redux/products/products_actions';
+import { fetchProducts } from '../redux/products/products_actions.js';
 import image_product from './shoes.jpg';
 
-import MainBanner from '../components/MainBanner/MainBanner';
-import Categories from '../components/Categories/Categories';
-import BestProducts from '../components/BestProducts/BestProducts';
-import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
-import Hero from '../components/Hero/Hero';
-import ClientSlider from '../components/ClientSlider/ClientSlider';
+import MainBanner from '../components/MainBanner/MainBanner.jsx';
+import Categories from '../components/Categories/Categories.jsx';
+import BestProducts from '../components/BestProducts/BestProducts.jsx';
+import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts.jsx';
+import Hero from '../components/Hero/Hero.jsx';
+import ClientSlider from '../components/ClientSlider/ClientSlider.jsx';
+// components
+import Navbar from '../components/Navbar/Navbar.jsx'
+import CartSidebar from '../components/CartSidebar/CartSidebar.jsx';
+import Sidebar from '../components/Sidebar/Sidebar.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+
+
+// scroll to top component
+import ScrollToTop from '../utils/ScrollToTop.js';
 
 const HomePage = () => {
   const { products } = useSelector((state) => state.products);
@@ -116,6 +125,10 @@ console.log(products);
 
   return (
     <>
+      <ScrollToTop />
+      <Navbar />
+      <CartSidebar />
+      <Sidebar />
       <MainBanner />
       <Categories />
       <BestProducts bestProducts={_products} />
@@ -127,7 +140,8 @@ console.log(products);
         text="Discover enchanting dresses and accessories, made for your little miss!"
       />
       <FeaturedProducts featuredProducts={_products} />
-      <ClientSlider />
+      <Footer />
+      
     </>
   );
 };
