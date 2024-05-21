@@ -5,7 +5,6 @@ import { fetchProducts } from '../redux/products/products_actions.js';
 
 import Banner from '../components/Banner/Banner.jsx';
 import AllProducts from '../components/AllProducts/AllProducts.jsx';
-import ClientSlider from '../components/ClientSlider/ClientSlider.jsx';
 import image_product from './shoes.jpg';
 
 

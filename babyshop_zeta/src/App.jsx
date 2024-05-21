@@ -16,6 +16,7 @@ import {
   Contact,
   Cart,
   AllProducts,
+  AllCategories,
   SingleProduct,
   Error,
   Login,
@@ -57,6 +58,10 @@ function App() {
         <Route exact path="/signup"  element={<Signup />}/>
           
         <Route path="/products"  element={<AllProducts />}/>
+
+        <Route path="/categories"  element={<AllCategories/>}/>
+
+        <Route path="/categories/:id"  element={<Category/>}/>
 
         <Route path="/products/:id" element={<SingleProduct />} />
  

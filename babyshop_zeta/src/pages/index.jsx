@@ -7,6 +7,8 @@ import About from './AboutPage';
 import Contact from './ContactPage';
 import Cart from './CartPage';
 import AllProducts from './AllProductsPage';
+import AllCategories from './AllCategoriesPage';
+import Category from './CategoryPage.jsx';
 import SingleProduct from './SingleProductPage';
 import Error from './ErrorPage';
 import Login from './LoginPage';
@@ -29,8 +31,10 @@ export {
   Toys,
   About,
   Contact,
+  Category,
   Cart,
   AllProducts,
+  AllCategories,
   SingleProduct,
   Error,
   Login,

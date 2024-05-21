@@ -124,7 +124,6 @@ if (loading) {
         text="Discover enchanting dresses and accessories, made for your little miss!"
       />
       <FeaturedProducts featuredProducts={products} />
-      <ClientSlider />
     </>
   );
 };
