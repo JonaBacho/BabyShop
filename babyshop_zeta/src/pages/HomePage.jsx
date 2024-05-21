@@ -20,16 +20,10 @@ import Footer from '../components/Footer/Footer.jsx';
 
 
 // scroll to top component
-import ScrollToTop from '../utils/ScrollToTop.js';
-import { fetchProducts } from '../redux/products/products_actions';
-
-import MainBanner from '../components/MainBanner/MainBanner';
-import Categories from '../components/Categories/Categories';
-import BestProducts from '../components/BestProducts/BestProducts';
-import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
-import Hero from '../components/Hero/Hero';
-import ClientSlider from '../components/ClientSlider/ClientSlider';
 import Loading from '../components/Loading/Loading';
+import ScrollToTop from '../utils/ScrollToTop';
+
+
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -51,11 +45,13 @@ const HomePage = () => {
         setProducts(transformedData);
         // Affichage ou utilisation de la liste transformée
       console.log(transformedData);
+      setLoading(false);
+
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
-      } finally {
-        setLoading(false);
-      }
+        setLoading(true);
+
+      } 
     };
 
     fetchData();
@@ -72,6 +68,31 @@ const HomePage = () => {
 
 console.log(products);
 
+if (loading) {
+  return (
+    <>
+    <ScrollToTop />
+    <Navbar />
+    <CartSidebar />
+    <Sidebar />
+    <MainBanner />
+    <Categories />
+    <BestProducts bestProducts={products} />
+    <Loading />
+    <Hero
+      subtitleHeading="world of"
+      subtitleFooter="bliss"
+      offer="adorable"
+      title="Where tiny treasures await your sweetest kiss."
+      text="Discover enchanting dresses and accessories, made for your little miss!"
+    />
+    
+    <FeaturedProducts featuredProducts={products} />
+    <Loading />
+  </>
+  );
+}
+
 
 
   return (
@@ -80,33 +101,6 @@ console.log(products);
       <Navbar />
       <CartSidebar />
       <Sidebar />
-  if (loading) {
-    return (
-      <>
-      <MainBanner />
-      <Categories />
-      <BestProducts bestProducts={products} />
-      <Loading />
-      <Hero
-        subtitleHeading="world of"
-        subtitleFooter="bliss"
-        offer="adorable"
-        title="Where tiny treasures await your sweetest kiss."
-        text="Discover enchanting dresses and accessories, made for your little miss!"
-      />
-      <FeaturedProducts featuredProducts={_products} />
-      <Footer />
-      
-      <FeaturedProducts featuredProducts={products} />
-      <Loading />
-      <ClientSlider />
-    </>
-    );
-  }
-
-
-  return (
-    <>
       <MainBanner />
       <Categories />
       <BestProducts bestProducts={products} />
