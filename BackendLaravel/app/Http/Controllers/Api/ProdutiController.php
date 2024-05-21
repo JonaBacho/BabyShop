@@ -11,7 +11,8 @@ class ProdutiController extends Controller
 {
     public function ProduitsHome()
     {
-        return ProduitResource::collection(Produit::where('actif', 1)->paginate(8));
+        $allProducts = ProduitResource::collection(Produit::where('actif', 1)->paginate(8));
+        return response()->json($productDetails);
     }
 
     public function categorieProduit(Request $request)

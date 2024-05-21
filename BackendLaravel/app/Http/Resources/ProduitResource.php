@@ -14,12 +14,27 @@ class ProduitResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // calcul d'ancien prix
+        if ($this->prix > $this->prixAchat){
+            $prix = $this->prixAchat;
+            $ancienPrix = $this->prix;
+        }else
+        {
+            $prix = $this->prix;
+            $ancienPrix = $this->prixAchat;
+        }
+        
+
+        // calcul aléatoire d'un nombre d'étoile
+        $star = mt_rand(0, 4) + (mt_rand(0, 9)/10);
+
         return [
             'codePro' => $this->codePro,
             'nomPro' => $this->nomPro,
             'idCategorie' => $this->idCategorie,
             'imageUrl' => $this->imageUrl,
-            'prix' => $this->prix,
+            'prix' => $prix,
+            'ancienPrix' => $ancienPrix,
             'qte' => $this->qte,
             'description' => $this->description,
             'codeArrivage' => $this->codeArrivage,
@@ -28,6 +43,7 @@ class ProduitResource extends JsonResource
             'prixAchat' => $this->prixAchat,
             'pourcentage' => $this->pourcentage,
             'promo' => $this->promo,
+            'etoile' => $star, 
             'size1' => $this->size1,
             'size2' => $this->size2,
             'typeSize' => $this->typeSize,
