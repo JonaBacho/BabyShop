@@ -26,7 +26,7 @@ class ProduitResource extends JsonResource
         
 
         // calcul aléatoire d'un nombre d'étoile
-        $star = mt_rand(0, 4) + (mt_rand(0, 9)/10);
+        $star = mt_rand(2, 4) + (mt_rand(0, 9)/10);
 
         return [
             'codePro' => $this->codePro,

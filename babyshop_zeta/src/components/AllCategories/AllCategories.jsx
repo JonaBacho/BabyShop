@@ -7,6 +7,8 @@ import Loading from '../Loading/Loading';
 
 
 import Category from '../Categories/Category/Category.jsx';
+import {Link} from 'react-router-dom';
+
 
 const AllCategories = ({ categories }) => {
   const [visible, setVisible] = useState(6);
@@ -15,21 +17,6 @@ const AllCategories = ({ categories }) => {
   const showMoreCategories = () => {
     setVisible((oldValue) => oldValue + 3);
   };
-
-  if (!loading) {
-    return (
-      <section className="py-5">
-        <div className="container">
-          <Title title="BEST SELLING" />
-          <div className="row">
-            <div className="col-10 mx-auto col-md-6">
-              <Loading />
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="py-5">
@@ -42,9 +29,8 @@ const AllCategories = ({ categories }) => {
                 key={category.id}
                 className="col-10 col-md-6 col-lg-4 mx-auto"
               >
-                <Link to={`/category/${category.id}`}>
-                    {category.name}
-                    <Category title={category.name} image={category.imageUrl} />
+                <Link to={`/categories/${category.id}`}>
+                    <Category image={category.image} title={category.name} />
                 </Link>
               </div>
             );

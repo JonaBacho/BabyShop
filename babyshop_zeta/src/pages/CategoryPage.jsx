@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Product from '../components/Product/Product.jsx';
+import axiosClient from '../axios-client.js';
+
 
 const CategoryPage = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('/categories/produits?idCategorie=${id}');
+        const response = await axiosClient.get(`/categorie/produits?idCategorie=${id}`);
 
         const data = response.data.data;
 

@@ -18,9 +18,8 @@ class ProduitController extends Controller
     // Produits d'une catégorie dont l'id est passé dans l'url
     public function categorieProduit(Request $request)
     {
-        $category_product = Produit::where('idCategorie', $request->idCategorie)->where('actif', 1)->get();
-        $finalResult = ProduitResource::collection($category_product);
-        return response()->json($finalResult, 200);
+        $category_product = Produit::where('idCategorie', $request->idCategorie)->where('actif', 1)->paginate(10);
+        return ProduitResource::collection($category_product);
     }
 
 
