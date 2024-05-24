@@ -17,7 +17,6 @@ import {
   Cart,
   AllProducts,
   AllCategories,
-  Category,
   SingleProduct,
   Error,
   Login,
@@ -26,6 +25,7 @@ import {
   AdminHome,
   AdminCategory,
   AdminProduct,
+  AdminSingleProduct,
   AdminInvoice,
   AdminStocks,
   Category,
@@ -80,6 +80,9 @@ function App() {
         <Route exact path="/admin/category"  element={<AdminCategory/>}/>
 
         <Route exact path="/admin/product"  element={<AdminProduct/>}/>
+
+        <Route exact path="/admin/product/:id"  element={<AdminSingleProduct/>}/>
+
 
         <Route exact path="/admin/stocks"  element={<AdminStocks/>}/>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector} from "react-redux";
 
 import Title from '../Title/Title';
 import Product from '../Product/Product';

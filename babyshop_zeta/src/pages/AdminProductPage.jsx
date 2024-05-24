@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector} from "react-redux";
+
 import AdminButtons from "../components/AdminButtons/AdminButtons.jsx";
 import AdminCategory from "../components/AdminCategory/AdminCategory.jsx";
 import AdminCategoryContainer from "../components/AdminCategoryContainer/AdminCategoryContainer.jsx";
@@ -8,14 +12,13 @@ import AdminNewCategory from "../components/AdminNewCategory/AdminNewCategory.js
 import AdminStocksTable from "../components/AdminStocksTable/AdminStocksTable.jsx";
 import AdminProductsTable from "../components/AdminProductsTable/AdminProductsTable.jsx";
 import AdminProductDetails from "../components/AdminProductDetails/AdminProductDetails.jsx";
-import { useState } from 'react';
 import AdminArticleSlider from "../components/AdminArticleSlider/AdminArticleSlider.jsx";
 import AdminInvoiceInfo from "../components/AdminInvoiceInfo/AdminInvoiceInfo.jsx";
 import AdminProductContainer from '../components/AdminProductContainer/AdminProductContainer.jsx';
 import Topbar from '../components/Topbar.jsx';
 import AdminNavbar from '../components/AdminNavbar/AdminNavbar.jsx';
 
-const products = [
+const _products = [
   { id: 1, name: 'Category 1', image: '/src/assets/images/logo_baby.png', count: 10 },
   { id: 2, name: 'Category 2', image: '/src/assets/images/logo_baby.png', count: 15 },
   { id: 3, name: 'Category 3', image: '/src/assets/images/logo_baby.png', count: 8 }
@@ -23,7 +26,46 @@ const products = [
 
 
 
-const AdminProductPage = () => {  
+const AdminProductPage = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+    
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosClient.get('home/produits');
+    
+
+        const data = response.data.data;
+
+        const transformedData = data.map(item => ({
+          id: item.codePro,
+          image: item.imageUrl,
+          name: item.nomPro,
+          price: item.prix,
+          oldPrice: item.ancienPrix,
+          stars: item.etoile,
+          count: item.qte
+        }));
+    
+        setProducts(transformedData);
+
+        // Affichage ou utilisation de la liste transformée
+      console.log(transformedData);
+      setLoading(false);
+
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+        setLoading(true);
+
+      } 
+    };
+
+    fetchData();
+
+  }, []);  
   return (
     <div>
       <Topbar/>
@@ -34,20 +76,7 @@ const AdminProductPage = () => {
       <button type="button" className="btn btn-primary btn-lg">Refresh</button>
       </div>
       
-      <AdminProductContainer products={products} />
-      <nav className = "container my-4" aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>   
+      <AdminProductContainer products={_products} />   
     </div>
   );
 };
