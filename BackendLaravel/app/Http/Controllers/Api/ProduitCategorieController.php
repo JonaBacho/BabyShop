@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProduitCategorieResource;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Models\ClientCarte;
+use App\Models\Gestionnaire;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class ProduitCategorieController extends Controller
 {
