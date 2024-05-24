@@ -84,6 +84,7 @@ if (loading) {
   return (
     <>
     <ScrollToTop />
+    
     <Navbar />
     <CartSidebar />
     <Sidebar />

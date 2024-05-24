@@ -15,10 +15,12 @@ import Login from './LoginPage';
 import Signup from './SignupPage';
 import NewCategory from './NewCategoryPage';
 import AdminHome from './AdminHomePage';
+import AdminLogin from './AdminLoginPage';
 import AdminCategory from './AdminCategoryPage';
 import AdminProduct from './AdminProductPage';
 import AdminInvoice from './AdminInvoicePage';
 import AdminStocks from './AdminStocksPage.jsx';
+import Payment from './PaymentPage.jsx';
 
 
 
@@ -38,9 +40,11 @@ export {
   SingleProduct,
   Error,
   Login,
+  Payment,
   Signup,
   NewCategory,
   AdminHome,
+  AdminLogin,
   AdminCategory,
   AdminProduct,
   AdminInvoice,

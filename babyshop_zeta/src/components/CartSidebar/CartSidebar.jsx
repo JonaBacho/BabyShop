@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdDelete } from 'react-icons/md';
 import { CgCloseO } from 'react-icons/cg';
-
+import { Link } from 'react-router-dom';
 import { formatPrice } from '../../utils/formatPrice';
 
 import { closeSideCart } from '../../redux/sidebar/sidebar_actions';
@@ -85,6 +85,9 @@ const CartSidebar = () => {
             </div>
           )}
         </div>
+        <Link to="/cart" className="btn btn-primary">
+          Go to Cart
+        </Link>
         <div className="cart-sidebar__footer">
           Total: {formatPrice(totalPrice)}{' '}
         </div>

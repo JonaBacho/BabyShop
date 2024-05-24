@@ -20,10 +20,25 @@ import Footer from '../components/Footer/Footer.jsx';
 // scroll to top component
 import ScrollToTop from '../utils/ScrollToTop.js';
 import AllCategories from '../components/AllCategories/AllCategories.jsx';
+import SingleProduct from '../components/SingleProduct/SingleProduct.jsx';
 
 const AllCategoriesPage = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const productData = {
+      codePro: 'ABC123',
+      nomPro: 'Awesome Product',
+      prix: 19.99,
+      qte: 10,
+      description: 'This is a great product you will love!',
+      actif: true,
+      prixAchat: 12.50,
+      stars: 4,
+      photos: [
+        'https://www.freepik.com/free-photo/interior-kids-room-decoration-with-clothes_18271252.htm#fromView=search&page=1&position=1&uuid=2318a3f1-b957-43c0-b345-9ae59205d995',
+        '../assets/images/BANNERProduct.png',
+      ],
+    };
     
   const dispatch = useDispatch();
 
@@ -68,6 +83,7 @@ console.log(categories);
       <CartSidebar />
       <Sidebar />
       <Banner image={productsBanner} />
+      <SingleProduct {...productData} />
       <AllCategories categories={categories} />
     </>
   );

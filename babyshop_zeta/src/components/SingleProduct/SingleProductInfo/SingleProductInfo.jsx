@@ -14,10 +14,6 @@ const SingleProductInfo = ({ name, brand, price, stars, desription, id }) => {
     <>
       <div className="singleProduct">
         <h3 className="singleProduct__title">{name}</h3>
-        <p className="singleProduct__brand">
-          {' '}
-          <span className="singleProduct__brand--span">BRAND:</span> {brand}
-        </p>
         <h4 className="singleProduct__price">{formatPrice(price)}</h4>
         <Stars stars={stars} />
         <p className="singleProduct__desc">{desription}</p>

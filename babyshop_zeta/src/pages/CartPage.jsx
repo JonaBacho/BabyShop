@@ -1,26 +1,107 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../redux/products/products_actions';
+import cartEmptyImg from '../assets/images/cart-empty.jpg';
+import { formatPrice } from '../utils/formatPrice';
+import Hero from '../components/Hero/Hero.jsx';
+import './../components/CartSidebar/CartPage.css'
 
-const CartPage = ({ cartItems, removeFromCart }) => {
+// components
+import Navbar from '../components/Navbar/Navbar.jsx'
+import Sidebar from '../components/Sidebar/Sidebar.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+
+
+// scroll to top component
+import ScrollToTop from '../utils/ScrollToTop.js';
+
+
+
+
+
+const CartPage = ( ) => {
+  const { cart } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    let price = 0;
+
+    cart.forEach((item) => {
+      price += item.qty * item.price;
+    });
+
+    setTotalPrice(price);
+  }, [cart, totalPrice, setTotalPrice]);
+
+
   return (
-    <div className="cart-page">
+    <div >
+      <ScrollToTop />
+      <Navbar />
+      <Sidebar />
+      <div className="cart-page container my-4">
       <h2>Your Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <ul className="cart-items">
-          {cartItems.map(item => (
-            <li key={item.id} className="cart-item">
-              <img src={item.image} alt={item.name} />
-              <div>
-                <h3>{item.name}</h3>
-                <p>Price: ${item.price}</p>
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      
+        
+        <div className="cart-page__content">
+          {cart.length > 0 ? (
+            cart.map((item) => {
+              return (
+                <>
+                <div key={item.codePro} className="cart-page__products">
+                  <div className="cart-page__product-image-container">
+                    <img
+                      className="cart-page__product-image"
+                      src={item.image}
+                      alt="product"
+                    />
+                  </div>
+                  <div className="cart-page__product-info">
+                    <p className="cart-page__product-name">{item.nomPro}</p>
+                    <div className="cart-page__prices">
+                      <p className="cart-page__product-qty">{item.qty} X</p>
+                      <p className="cart-page__product-price">
+                        {formatPrice(item.price)}
+                      </p>
+                      <p className="cart-page__delete">
+                      <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <Link to="/payment" className="btn btn-primary mx-10" style={{"text-align":"center"}}>Get to Payment</Link>
+
+                </>
+                
+                
+              );
+            })
+          ) : (
+            <div className="cart-sidebar__empty-image-container">
+              <img
+                className="cart-sidebar__empty-image"
+                src={cartEmptyImg}
+                alt="cart is empty"
+                style={{width :'500px'}}
+              />
+            </div>
+          )}
+        </div>
+      
     </div>
+      <Hero
+        subtitleHeading="world of"
+        subtitleFooter="bliss"
+        offer="adorable"
+        title="Where tiny treasures await your sweetest kiss."
+        text="Discover enchanting dresses and accessories, made for your little miss!"
+      />
+      <Footer/>
+    </div>
+    
+
   );
 };
 

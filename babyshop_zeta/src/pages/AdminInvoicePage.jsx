@@ -12,6 +12,7 @@ import { useState } from 'react';
 import AdminArticleSlider from "../components/AdminArticleSlider/AdminArticleSlider.jsx";
 import AdminInvoiceInfo from "../components/AdminInvoiceInfo/AdminInvoiceInfo.jsx";
 import AdminNavbar from '../components/AdminNavbar/AdminNavbar.jsx';
+import Topbar from '../components/Topbar.jsx';
 
 
 const categories = [
@@ -55,6 +56,7 @@ const AdminInvoice = () => {
 
   return (
     <div>
+      <Topbar/>
       <AdminNavbar/>
       <h1 className="my-4">Admin Invoice page</h1>
       <AdminCustomerInfo/>

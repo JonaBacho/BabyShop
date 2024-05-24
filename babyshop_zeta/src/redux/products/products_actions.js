@@ -20,10 +20,10 @@ export const fetchProducts = () => {
   };
 };
 
-export const addToCart = (itemID) => {
+export const addToCart = (product) => {
   return {
     type: ADD_TO_CART,
-    payload: itemID,
+    payload: product,
   };
 };
 

@@ -12,6 +12,8 @@ import { useState } from 'react';
 import AdminArticleSlider from "../components/AdminArticleSlider/AdminArticleSlider.jsx";
 import AdminInvoiceInfo from "../components/AdminInvoiceInfo/AdminInvoiceInfo.jsx";
 import AdminProductContainer from '../components/AdminProductContainer/AdminProductContainer.jsx';
+import Topbar from '../components/Topbar.jsx';
+import AdminNavbar from '../components/AdminNavbar/AdminNavbar.jsx';
 
 const products = [
   { id: 1, name: 'Category 1', image: '/src/assets/images/logo_baby.png', count: 10 },
@@ -24,7 +26,9 @@ const products = [
 const AdminProductPage = () => {  
   return (
     <div>
-      <AdminInfoBar/>
+      <Topbar/>
+      <AdminNavbar/>
+
       <div class="container-md ">
       <button type="button" className="btn btn-primary btn-lg">Print out</button>
       <button type="button" className="btn btn-primary btn-lg">Refresh</button>

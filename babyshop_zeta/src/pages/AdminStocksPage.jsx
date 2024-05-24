@@ -14,6 +14,8 @@ import { useState } from 'react';
 import AdminArticleSlider from "../components/AdminArticleSlider/AdminArticleSlider.jsx";
 import AdminInvoiceInfo from "../components/AdminInvoiceInfo/AdminInvoiceInfo.jsx";
 import StocksSearchBar from '../components/StocksSearchBar/StocksSearchBar.jsx';
+import Topbar from '../components/Topbar.jsx';
+import AdminNavbar from '../components/AdminNavbar/AdminNavbar.jsx';
 
 
 const categories = [
@@ -57,7 +59,8 @@ const AdminStocks = () => {
 
   return (
     <div>
-      <AdminInfoBar/>
+      <Topbar/>
+      <AdminNavbar/>
       <div className='container' style={{ display: 'flex',justifyContent: 'space-between', padding: '10px', }}>
         <StocksSearchBar/>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
