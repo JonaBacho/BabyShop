@@ -29,68 +29,27 @@ const SingleProductPage = () => {
   const showMoreProducts = () => {
     setVisible((oldValue) => oldValue + 3);
   };
-  const _products = [
-    {
-        id: 1,
-        image: image_product,
-        name: "Product 1",
-        price: 29.99,
-        oldPrice: 39.99,
-        stars: 4.5
-    },
-    {
-        id: 2,
-        image: image_product,
-        name: "Product 2",
-        price: 49.99,
-        oldPrice: 59.99,
-        stars: 4.2
-    },
-    {
-        id: 3,
-        image: image_product,
-        name: "Product 3",
-        price: 19.99,
-        oldPrice: 24.99,
-        stars: 4.8
-    },
-    {
-        id: 4,
-        image: image_product,
-        name: "Product 4",
-        price: 79.99,
-        oldPrice: 89.99,
-        stars: 4.0
-    }]
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`/produits/details?codePro=${id}`);
-        const response2 = await axiosClient.get(`/produits/details?codePro=${id}`); //to get products of thesame category
+        const response = await axiosClient.get(`/produit/details?codePro=${id}`);
 
-        const data = response.data.data;
-        const data2 = response2.data.data;
+        const data = response.data;
+        const idCat = data.categorie.idCat;
+        const response2 = await axiosClient.get(`/categorie/produits?idCategorie=${idCat}`); //to get products of thesame category
+        const data2 = response2.data;
 
 
         const transformedData = data.map(item => ({
-          id: item.codePro,
-          image: item.imageUrl,
-          name: item.nomPro,
-          price: item.prix,
-          oldPrice: item.ancienPrix,
-          codePro: 'ABC123',
-          nomPro: 'Awesome Product',
-          prix: 19.99,
-          qte: 10,
-          description: 'This is a great product you will love!',
-          actif: true,
-          prixAchat: 12.50,
-          stars: 4,
-          photos: [
-            'https://www.freepik.com/free-photo/interior-kids-room-decoration-with-clothes_18271252.htm#fromView=search&page=1&position=1&uuid=2318a3f1-b957-43c0-b345-9ae59205d995',
-            '../assets/images/BANNERProduct.png',
-          ],
+          codePro: item.codePro,
+          nomPro: item.nomPro,
+          prix: item.prix,
+          qte: item.qte,
+          description : item.description,
+          prixAchat: item.ancienPrix,
+          stars: item.etoile,
+          photos: item.photos.map(item => (item.lienPhoto))
         }));
         const transformedData2 = data2.map(item => ({
           id: item.codePro,
@@ -141,7 +100,7 @@ const SingleProductPage = () => {
       />
       <section className="py-5">
         <div className="container">
-          <Title title="PRODUCTS OF THESAME CATEGORY" />
+          <Title title="PRODUCTS OF THE SAME CATEGORY" />
           <div className="row">
             {similarProducts.map((product) => {
               return (
@@ -158,7 +117,7 @@ const SingleProductPage = () => {
       </section>
       <section className="py-5">
       <div className="container">
-        <Title title="PRODUCTS OF THESAME CATEGORY" />
+        <Title title="PRODUCTS OF THE SAME CATEGORY" />
         <div className="row">
           {similarProducts.slice(0, visible).map((product) => {
             return (

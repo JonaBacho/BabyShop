@@ -39,6 +39,7 @@ class ProduitDetailsResource extends JsonResource
             'prix' => $this->prix,
             'ancienPrix' => $ancienPrix,
             'qte' => $this->qte,
+            'description' => $this->description,
             'codeArrivage' => $this->codeArrivage,
             'actif' => $this->actif,
             'dateInsertion' => $this->dateInsertion,
