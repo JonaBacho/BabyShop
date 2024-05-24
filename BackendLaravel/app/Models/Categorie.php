@@ -25,4 +25,9 @@ class Categorie extends Model
         }
 
     }*/
+
+    public function produit()
+    {
+        return $this->belongsTo(Produit::class, 'idCategorie', 'codePro');
+    }
 }

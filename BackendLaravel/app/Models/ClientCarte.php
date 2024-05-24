@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class ClientCarte extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
     protected $table = 'clientcarte';
     protected $primaryKey = 'matr';
-    //public $timestamps = false;
+    public $timestamps = false;
     protected $fillable = [
         'matr',
         'nom',
+        'pwd',
         'sexe',
         'dateNaiss',
         'idVille',
@@ -21,7 +23,10 @@ class ClientCarte extends Model
         'whatsapp',
         'creation',
         'point',
-        'montantTontine'
+        'montantTontine',
+        'user',
+        'typeChat',
+        'chatID',
     ];
 
     protected $hidden = [

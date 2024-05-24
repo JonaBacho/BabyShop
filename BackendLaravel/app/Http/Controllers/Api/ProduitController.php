@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\ProduitResource;
+use App\Http\Resources\ProduitDetailsResource;
 use App\Models\Produit;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,9 +27,17 @@ class ProduitController extends Controller
     // details d'un produit dont on connait le codePro
     public function produitDetails(Request $request)
     {
-        $productDetails = Produit::where('codePro', $request->codePro)->with('categorie')->with('photo');
+        $request->validate([
+            'codePro' => 'required|string|max:255',
+        ]);
 
-//        return $productDetails = Product::with('productCategory')->with('productImage')->find($request->id);
-        return response()->json($productDetails, 200);
+        $productDetails = Produit::where('codePro', $request->codePro)->with('categorie', 'photo')->first();
+
+        //return $productDetails = Product::with('productCategory')->with('productImage')->find($request->id);
+        if ($productDetails) {
+            return new ProduitDetailsResource($productDetails);
+        } else {
+            return response()->json(['message' => 'Produit non trouvé'], 404);
+        }
     }
 }

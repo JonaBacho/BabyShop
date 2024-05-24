@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Gestionnaire;
+use App\Models\ClientCarte;
 
 class AuthController extends Controller
 {
@@ -11,16 +15,32 @@ class AuthController extends Controller
     {
         $request->validate([
             'nom' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:client',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->role === 'client' && ClientCarte::where('user', $value)->exists()) {
+                        $fail('The email has already been taken.');
+                    } elseif ($request->role === 'gestionnaire' && Gestionnaire::where('login', $value)->exists()) {
+                        $fail('The email has already been taken.');
+                    }
+                },
+            ],
             'password' => 'required|string|min:8',
-            'role' => 'required|string|in:client,gestionnaire'
+            'role' => 'required|string|in:client,gestionnaire',
+            'typeGest' => 'required_if:role,gestionnaire|string|in:magasinier,caissier',
+            'mobile' => 'required_if:role,gestionnaire|string|max:255'
         ]);
 
         if ($request->role === 'client') {
-            $client = Client::create([
+            $client = ClientCarte::create([
                 'nom' => $request->nom,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'user' => $request->email,
+                'creation' => now(),
+                'pwd' => Hash::make($request->password),
+                'chatID' => mt_rand(0, 2),
             ]);
             return response()->json(['message' => 'Client created successfully'], 201);
         } elseif ($request->role === 'gestionnaire') {
@@ -28,8 +48,9 @@ class AuthController extends Controller
                 'nomGest' => $request->nom,
                 'login' => $request->email,
                 'pwd' => Hash::make($request->password),
-                'typeGest' => 'default',
+                'typeGest' => $request->typeGest,
                 'actif' => 1,
+                'mobile' => $request->mobile,
             ]);
             return response()->json(['message' => 'Gestionnaire created successfully'], 201);
         }
@@ -45,7 +66,7 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        $client = Client::where('email', $request->email)->first();
+        $client = ClientCarte::where('user', $request->email)->first();
         $gestionnaire = Gestionnaire::where('login', $request->email)->first();
 
         if ($client && Hash::check($request->password, $client->pwd)) {
@@ -62,7 +83,7 @@ class AuthController extends Controller
                 'message' => 'Login successful',
                 'token' => $token,
                 'role' => 'gestionnaire',
-                'redirect_url' => '/gestionnaire/dashboard',
+                'redirect_url' => $gestionnaire->typeGest === 'magasinier' ? '/magasinier/dashboard' : '/caissier/dashboard',
             ], 200);
         }
 

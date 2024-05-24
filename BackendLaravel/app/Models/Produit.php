@@ -28,13 +28,15 @@ class Produit extends Model
         'typeSize',
     ];
 
-    function produitCategory()
+    public function categorie()
     {
         return $this->belongsTo(Categorie::class, 'idCategorie', 'idCat');
     }
 
-    function produitImage()
+    public function photo()
     {
-        return $this->hasMany(Photo::class, 'codePro', 'codePro');
+        return $this->hasMany(Photo::class, 'idPhoto', 'codePro');
     }
+
+
 }

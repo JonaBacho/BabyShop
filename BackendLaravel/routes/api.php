@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProduitCategorieController;
 use App\Http\Controllers\Api\ProduitController;
 use Illuminate\Http\Request;
