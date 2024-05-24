@@ -22,11 +22,12 @@ import ScrollToTop from '../utils/ScrollToTop.js';
 const CategoryPage = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`/categories/produits?idCategorie=${id}`);
+        const response = await axiosClient.get(`/categorie/produits?idCategorie=${id}`);
 
         const data = response.data.data;
 

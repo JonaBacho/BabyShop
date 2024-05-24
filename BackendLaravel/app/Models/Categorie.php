@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
+    protected $table = 'categorie';
     public $timestamps=false;
     protected $fillable=[
         'idCat',
@@ -24,4 +25,9 @@ class Categorie extends Model
         }
 
     }*/
+
+    public function produit()
+    {
+        return $this->belongsTo(Produit::class, 'idCategorie', 'codePro');
+    }
 }

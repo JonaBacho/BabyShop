@@ -3,9 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\PhotoResource;
+use App\Http\Resources\ProduitCategorieResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProduitResource extends JsonResource
+class ProduitDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +16,7 @@ class ProduitResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         // calcul d'ancien prix
         if ($this->prix > $this->prixAchat){
             $prix = $this->prixAchat;
@@ -33,10 +36,9 @@ class ProduitResource extends JsonResource
             'nomPro' => $this->nomPro,
             'idCategorie' => $this->idCategorie,
             'imageUrl' => $this->imageUrl,
-            'prix' => $prix,
+            'prix' => $this->prix,
             'ancienPrix' => $ancienPrix,
             'qte' => $this->qte,
-            'description' => $this->description,
             'codeArrivage' => $this->codeArrivage,
             'actif' => $this->actif,
             'dateInsertion' => $this->dateInsertion,
@@ -47,7 +49,8 @@ class ProduitResource extends JsonResource
             'size1' => $this->size1,
             'size2' => $this->size2,
             'typeSize' => $this->typeSize,
-            'categorieInfo'=> new ProduitCategorieResource($this->categorie),
+            'categorie' => new ProduitCategorieResource($this->whenLoaded('categorie')),
+            'photos' => PhotoResource::collection($this->whenLoaded('photo')),
         ];
     }
 }

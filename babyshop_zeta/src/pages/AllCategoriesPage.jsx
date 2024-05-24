@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axiosClient from '../axios-client.js';
 
 import { fetchProducts } from '../redux/products/products_actions.js';
 
@@ -45,7 +46,7 @@ const AllCategoriesPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('home/categories');
+        const response = await axiosClient.get('produit/categories');
     
 
         const data = response.data.data;
@@ -53,7 +54,7 @@ const AllCategoriesPage = () => {
         const transformedData = data.map(item => ({
           id: item.idCat,
           image: item.imageUrl,
-          name: item.nomCat,
+          name: item.nomCat
         }));
     
         setCategories(transformedData);
@@ -71,7 +72,7 @@ const AllCategoriesPage = () => {
 
     fetchData();
 
-  }, [])
+  }, []);
 
 console.log(categories);
 

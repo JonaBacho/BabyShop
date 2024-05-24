@@ -13,7 +13,7 @@ import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts.js
 import Hero from '../components/Hero/Hero.jsx';
 import ClientSlider from '../components/ClientSlider/ClientSlider.jsx';
 // components
-import Navbar from '../components/Navbar/Navbar.jsx'
+import Navbar from '../components/Navbar/Navbar.jsx';
 import CartSidebar from '../components/CartSidebar/CartSidebar.jsx';
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
 import Footer from '../components/Footer/Footer.jsx';
@@ -36,7 +36,7 @@ const HomePage = () => {
         const response2 = await axiosClient.get('home/categories');
 
         const data = response.data.data;
-        const data2 = response2.data.data;
+        const data2 = response2.data;
 
         const transformedData = data.map(item => ({
           id: item.codePro,
@@ -49,7 +49,7 @@ const HomePage = () => {
         const transformedData2 = data2.map(item => ({
           id: item.idCat,
           image: item.imageUrl,
-          name: item.nomCat,
+          name: item.nomCat
           
         }));
         setProducts(transformedData);
@@ -75,7 +75,6 @@ const HomePage = () => {
   );
 
   const bestProducts = products.filter((product) => product.best === true);
-  
 
 
 console.log(products);
@@ -115,7 +114,7 @@ if (loading) {
       <CartSidebar />
       <Sidebar />
       <MainBanner />
-      <Categories />
+      <Categories categories={categories}/>
       <BestProducts bestProducts={products} />
       <Hero
         subtitleHeading="world of"

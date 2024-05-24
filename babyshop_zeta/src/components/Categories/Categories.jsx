@@ -8,6 +8,7 @@ import accessories from '../../assets/images/categories/accesories.png';
 import toys from '../../assets/images/categories/toy.png';
 
 const Categories = ({categories}) => {
+  console.log(categories);
   return (
     <>
       <section className="py-5 section-bg">

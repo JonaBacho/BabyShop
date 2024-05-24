@@ -17,6 +17,7 @@ import {
   Cart,
   AllProducts,
   AllCategories,
+  Category,
   SingleProduct,
   Error,
   Login,
