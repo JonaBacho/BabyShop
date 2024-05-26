@@ -70,7 +70,7 @@ import { formatPrice } from '../../utils/formatPrice';
 import { addToCart } from '../../redux/products/products_actions';
 
 
-const SingleProduct = ({ codePro, nomPro, prix, qte, description, actif, prixAchat, stars, photos }) => {
+const SingleProduct = ({ codePro, nomPro, prix, qte, description, actif, prixAchat, stars, photos=[] }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleImageChange = (selectedIndex) => {

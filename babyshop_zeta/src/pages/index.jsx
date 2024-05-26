@@ -18,6 +18,7 @@ import AdminHome from './AdminHomePage';
 import AdminLogin from './AdminLoginPage';
 import AdminCategory from './AdminCategoryPage';
 import AdminProduct from './AdminProductPage';
+import AdminSingleProduct from './AdminSingleProductPage';
 import AdminInvoice from './AdminInvoicePage';
 import AdminStocks from './AdminStocksPage.jsx';
 import Payment from './PaymentPage.jsx';
@@ -47,6 +48,7 @@ export {
   AdminLogin,
   AdminCategory,
   AdminProduct,
+  AdminSingleProduct,
   AdminInvoice,
   AdminStocks
   
