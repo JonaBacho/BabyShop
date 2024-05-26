@@ -20,4 +20,19 @@ class Gestionnaire extends Model
     protected $hidden = [
         'pwd',
     ];
+
+    // un gestionnaire est dans plusieurs tontines
+    public function tontine(){
+        return $this-> hasMany(Tontine::class, 'idTontine', 'idGest');
+    }
+
+    // un gestionnaire effectue plusieurs actions sur les stocks
+    public function gestionstock(){
+        return $this-> hasMany(GestionStock::class, 'idStock', 'idGest');
+    }
+
+    // un gestionnaire s'occupe de plusieurs facture
+    public function facture(){
+        return $this-> hasMany(Facture::class, 'idFac', 'idCaissiere');
+    }
 }

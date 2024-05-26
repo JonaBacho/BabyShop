@@ -28,11 +28,13 @@ class Produit extends Model
         'typeSize',
     ];
 
+    // un produit appartient à une seule catégorie
     public function categorie()
     {
         return $this->belongsTo(Categorie::class, 'idCategorie', 'idCat');
     }
 
+    // un poduit possede plusieurs photo
     public function photo()
     {
         return $this->hasMany(Photo::class, 'idPhoto', 'codePro');

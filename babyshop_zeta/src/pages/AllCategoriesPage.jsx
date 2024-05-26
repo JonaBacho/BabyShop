@@ -46,7 +46,7 @@ const AllCategoriesPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('produit/categories');
+        const response = await axiosClient.get('all/categories');
     
 
         const data = response.data.data;
@@ -84,7 +84,6 @@ console.log(categories);
       <CartSidebar />
       <Sidebar />
       <Banner image={productsBanner} />
-      <SingleProduct {...productData} />
       <AllCategories categories={categories} />
     </>
   );

@@ -33,5 +33,22 @@ class ClientCarte extends Model
         'pwd',
     ];
 
+    // un client possede plusieurs ligne carte
+    public function lignecarte()
+    {
+        return $this->hasMany(LigneCarte::class, 'id', 'idCarte');
+    }
+
+    //un client a plusieurs tontine
+    public function tontine()
+    {
+        return $this->hasMany(Tontine::class, 'idTontine', 'idCarte');
+    }
+
+    // un client appartient à une seule ville
+    public function ville()
+    {
+        return $this-> belongsTo(Ville::class, 'idVille', 'idVille');
+    }
 
 }

@@ -125,7 +125,7 @@ const SingleProduct = ({ codePro, nomPro, prix, qte, description, actif, prixAch
             <p><strong>Stock: </strong> {qte}</p>
             <p><strong>Active: </strong> {actif ? 'Yes' : 'No'}</p>
             <Stars stars={stars} />
-            <p><strong>Purchase price: </strong> €<h5>{prixAchat.toFixed(2)}</h5></p>
+            <p><strong>Purchase price: </strong> €<h5>{prixAchat}</h5></p>
             <button
               onClick={handleAddToCart}
               type="button"
