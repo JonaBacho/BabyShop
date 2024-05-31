@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Produit;
 
 class Photo extends Model
 {
     use HasFactory;
     protected $table = 'photo';
+    protected $primaryKey = 'idPhoto';
     protected $fillable=[
         'idPhoto',
         'lienPhoto',

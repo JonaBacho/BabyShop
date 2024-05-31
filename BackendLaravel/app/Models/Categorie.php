@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Produit;
 
 class Categorie extends Model
 {
     use HasFactory;
     protected $table = 'categorie';
+    protected $primaryKey = 'idCat';
     public $timestamps=false;
     protected $fillable=[
         'idCat',
@@ -28,6 +30,6 @@ class Categorie extends Model
 
     public function produit()
     {
-        return $this->belongsTo(Produit::class, 'idCategorie', 'codePro');
+        return $this->hasMany(Produit::class, 'idCategorie', 'idCat');
     }
 }

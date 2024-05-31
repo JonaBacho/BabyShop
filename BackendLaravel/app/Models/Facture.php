@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\LigneCarte;
+use App\Models\Gestionnaire;
+use App\Models\LigneFacture;
 
 class Facture extends Model
 {
@@ -26,7 +29,7 @@ class Facture extends Model
 
     // une facture correspond à plusieurs lignecarte
     public function lignecarte(){
-        return $this-> hasMany(LigneCarte::class, 'id', 'idFac');
+        return $this-> hasMany(LigneCarte::class, 'idFac', 'idFac');
     }
 
     // une facture est faite par un seul gestionnaire
@@ -36,7 +39,7 @@ class Facture extends Model
 
     // a une facture correspond plusieurs plusieurs ligne facture
     public function lignefacture(){
-        return $this-> belongsTo(LigneFacture::class, 'idLFac', 'idFac');
+        return $this-> hasMany(LigneFacture::class, 'idFac', 'idFac');
     }
 
 }

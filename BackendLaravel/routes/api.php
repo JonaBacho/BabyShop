@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ClientCarteController;
 use App\Http\Controllers\Api\GestionnaireController;
 use App\Http\Controllers\Api\ProduitCategorieController;
 use App\Http\Controllers\Api\ProduitController;
+use App\Http\Controllers\Api\IterPanierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureClient;
@@ -43,12 +44,19 @@ Route::get('produit/details', [ProduitController::class, 'produitDetails']);
 // Routes protégées par le middleware Sanctum et les rôles spécifiques
 Route::middleware('auth:sanctum')->group(function () {
 
+    // acces aux informations du client pour la page profil
     Route::get('/profile', [AuthController::class, 'profile']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     
     Route::middleware(EnsureClient::class)->group(function () {
+        // modification des informations du profile du client
         Route::put('/client', [ClientCarteController::class, 'update']);
+        // panier du client
+        Route::get('/panier/list', [IterPanierController::class, 'index']);
+        Route::post('/panier', [IterPanierController::class, 'store']);
+        Route::put('/panier/{idPanier}', [IterPanierController::class, 'update']);
+        Route::delete('/panier/{idPanier}', [IterPanierController::class, 'destroy']);
     });
 
     Route::middleware(EnsureGestionnaire::class)->group(function () {

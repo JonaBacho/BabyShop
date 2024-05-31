@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Ville;
+use App\Models\LigneCommande;
 
 class Commande extends Model
 {
@@ -33,7 +35,7 @@ class Commande extends Model
 
     // une commande possede plusieurs ligne commande
     public function lignecommande(){
-        return $this-> hasMany(LigneCommande::class, 'idLigneCom', 'idCommande');
+        return $this-> hasMany(LigneCommande::class, 'idCommande', 'idCommande');
     }
 
 }

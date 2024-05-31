@@ -18,11 +18,11 @@ class Ville extends Model
 
     // un ville abrite plusieurs clients
     public function clientcarte(){
-        return $this->hasMany(ClientCarte::class, 'matr', 'idVille');
+        return $this->hasMany(ClientCarte::class, 'idVille', 'idVille');
     }
 
     // une ville voit passer plusieurs commande
     public function commande(){
-        return $this->hasMany(Commande::class, 'idCommande', 'idVille');
+        return $this->hasMany(Commande::class, 'idVille', 'idVille');
     }
 }
