@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchProducts } from '../redux/products/products_actions.js';
+import axiosClient from '../axios-client.js';
 
 import Banner from '../components/Banner/Banner.jsx';
 import AllProducts from '../components/AllProducts/AllProducts.jsx';
@@ -28,9 +29,8 @@ const AllProductsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('home/produits');
+        const response = await axiosClient.get('all/produits');
     
-
         const data = response.data.data;
 
         const transformedData = data.map(item => ({

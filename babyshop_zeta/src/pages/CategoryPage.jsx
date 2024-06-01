@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Product from '../components/Product/Product.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../redux/products/products_actions.js';
+import axiosClient from '../axios-client.js';
 import Banner from '../components/Banner/Banner.jsx';
 import Title from '../components/Title/Title.jsx';
 import Hero from '../components/Hero/Hero.jsx';
@@ -30,7 +31,7 @@ const CategoryPage = () => {
         const response = await axiosClient.get(`/categorie/produits?idCategorie=${id}`);
 
         const data = response.data.data;
-
+        console.log(data);
         const transformedData = data.map(item => ({
           id: item.codePro,
           image: item.imageUrl,
