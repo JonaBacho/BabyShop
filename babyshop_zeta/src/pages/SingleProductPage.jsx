@@ -20,7 +20,20 @@ import Product from '../components/Product/Product.jsx';
 
 const SingleProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const productData = {
+    codePro: 'ABC123',
+    nomPro: 'Awesome Product',
+    prix: 19.99,
+    qte: 10,
+    description: 'This is a great product you will love!',
+    actif: true,
+    prixAchat: 12.50,
+    stars: 4,
+    photos: [
+      'https://www.freepik.com/free-photo/interior-kids-room-decoration-with-clothes_18271252.htm#fromView=search&page=1&position=1&uuid=2318a3f1-b957-43c0-b345-9ae59205d995',
+      '../assets/images/BANNERProduct.png',
+    ]};
+  const [product, setProduct] = useState([productData]);
   const [similarProducts, setSimilarProducts] = useState([]);
 
   const { singleProduct } = useSelector((state) => state.products);

@@ -49,7 +49,7 @@ const AdminNavbar = () => {
             <li className="nav-item">
               <NavLink 
                 className={`nav-link ${active === 'categories' ? 'active' : ''}`} 
-                to="/admin/category" 
+                to="/admin/categories" 
                 onClick={() => handleClick('categories')}
               >
                 <FaThList className="me-2" /> Categories
