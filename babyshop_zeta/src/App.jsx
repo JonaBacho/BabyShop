@@ -28,9 +28,11 @@ import {
   AdminSingleProduct,
   AdminInvoice,
   AdminStocks,
+  AdminProfile,
   Category,
   Payment,
   AdminLogin,
+  AdminAllCategories,
 
 } from './pages';
 import AdminNewCategory from './components/AdminNewCategory/AdminNewCategory.jsx';
@@ -77,7 +79,11 @@ function App() {
 
         <Route exact path="/admin/login"  element={<AdminLogin/>}/>
 
-        <Route exact path="/admin/category"  element={<AdminCategory/>}/>
+        <Route exact path="/admin/categories"  element={<AdminAllCategories/>}/>
+
+        <Route path="/admin/categories/:id"  element={<AdminCategory/>}/>
+
+        <Route path="/admin/profile"  element={<AdminProfile/>}/>
 
         <Route exact path="/admin/product"  element={<AdminProduct/>}/>
 

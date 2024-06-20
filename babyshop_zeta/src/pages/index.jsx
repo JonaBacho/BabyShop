@@ -21,7 +21,11 @@ import AdminProduct from './AdminProductPage';
 import AdminSingleProduct from './AdminSingleProductPage';
 import AdminInvoice from './AdminInvoicePage';
 import AdminStocks from './AdminStocksPage.jsx';
+import AdminProfile from './AdminProfilePage.jsx';
+
 import Payment from './PaymentPage.jsx';
+import AdminAllCategories from './AdminAllCategoriesPage';
+
 
 
 
@@ -50,6 +54,8 @@ export {
   AdminProduct,
   AdminSingleProduct,
   AdminInvoice,
-  AdminStocks
+  AdminStocks,
+  AdminProfile,
+  AdminAllCategories
   
 };

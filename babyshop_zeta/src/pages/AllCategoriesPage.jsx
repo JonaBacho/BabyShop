@@ -3,19 +3,13 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axiosClient from '../axios-client.js';
 
-import { fetchProducts } from '../redux/products/products_actions.js';
-
 import Banner from '../components/Banner/Banner.jsx';
-import AllProducts from '../components/AllProducts/AllProducts.jsx';
-import image_product from './shoes.jpg';
-
 
 import productsBanner from '../assets/images/BANNERProduct.png';
 // components
 import Navbar from '../components/Navbar/Navbar.jsx'
 import CartSidebar from '../components/CartSidebar/CartSidebar.jsx';
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
-import Footer from '../components/Footer/Footer.jsx';
 
 
 // scroll to top component

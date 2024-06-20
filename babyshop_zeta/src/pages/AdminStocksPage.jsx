@@ -32,30 +32,6 @@ const stocks = [
 
 
 const AdminStocks = () => {
-  
-
-  const [products, setProducts] = useState([
-    { productName: 'Product 1', productCode: 'P001', unitPrice: 10, quantity: 5, images: ['/src/assets/images/logo_baby.png'] },
-    { productName: 'Product 2', productCode: 'P002', unitPrice: 15, quantity: 3, images: ['/src/assets/images/logo_baby.png'] },
-    { productName: 'Product 3', productCode: 'P003', unitPrice: 20, quantity: 2,images: ['/src/assets/images/logo_baby.png'] },
-    { productName: 'Product 4', productCode: 'P004', unitPrice: 12, quantity: 7, images: ['/src/assets/images/logo_baby.png']},
-    { productName: 'Product 5', productCode: 'P005', unitPrice: 18, quantity: 4, images: ['/src/assets/images/logo_baby.png']},
-  ]);
-  const [selectedProduct, setSelectedProduct] = useState(products[0]);
-  const handleProductSelect = (product) => {
-    setSelectedProduct(product);
-    displayImages(product);
-  };
-  const handleQuantityChange = (productCode, newQuantity) => {
-    const updatedProducts = products.map(product => {
-      if (product.productCode === productCode) {
-        return { ...product, quantity: newQuantity };
-      }
-      return product;
-    });
-    setProducts(updatedProducts);
-  };
-  const total = products.reduce((acc, curr) => acc + (curr.quantity * curr.unitPrice), 0);
 
   return (
     <div>
