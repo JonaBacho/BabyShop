@@ -30,17 +30,17 @@ const Product = ({ product }) => {
           </Link>
           <span className="product__footer-icon">
             <AiOutlineShopping
-              onClick={() => dispatch(addToCart(product.id))}
+              onClick={() => dispatch(addToCart(product))}
             />
           </span>
         </div>
         <div className="product__footer-prices">
           <span>
             <span className="product__footer-price">
-              {formatPrice(product.price)}
+              {product.price}
             </span>
             <span className="product__footer-price--old">
-              {formatPrice(product.oldPrice)}
+              {product.oldPrice}
             </span>
           </span>
           {/* stars component */}

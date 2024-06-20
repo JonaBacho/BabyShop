@@ -20,26 +20,34 @@ const productsReducer = (state = initialState, action) => {
         loading: false,
         products: action.payload,
       };
+      
+          case ADD_TO_CART: {
+            // Check if the product already exists in the cart
+            const existingProduct = state.cart.find(item => item.id === action.payload.id);
+          
+            // If the product exists, increment its quantity
+            if (existingProduct) {
+              return {
+                ...state,
+                cart: state.cart.map(item => 
+                  item.id === action.payload.id 
+                    ? { ...item, qty: item.qty + 1 } 
+                    : item
+                ),
+              };
+            } else {
+              // If the product is new, add it to the cart with quantity 1
+              return {
+                ...state,
+                cart: [...state.cart, { ...action.payload, qty: 1 }],
+              };
+            }
+          }
+          
+      
+      
+      
 
-    case ADD_TO_CART:
-      // Great Item data from products array
-      const addedProduct = action.payload;
-      const item = state.products.find(
-        (product) => product.id === action.payload
-      );
-      // Check if Item is in cart already
-      const inCart = state.cart.find((item) =>
-        item.id === action.payload.id ? true : false
-      );
-
-      return {
-        ...state,
-        cart: inCart
-          ? state.cart.map((item) =>
-              item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item
-            )
-          : [...state.cart, { ...item, qty: 1 }],
-      };
 
     case REMOVE_FROM_CART:
       return {

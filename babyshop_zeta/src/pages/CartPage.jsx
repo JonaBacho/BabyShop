@@ -26,6 +26,7 @@ const CartPage = ( ) => {
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
+    console.log('Current Cart State:', cart);
     let price = 0;
 
     cart.forEach((item) => {
@@ -46,10 +47,15 @@ const CartPage = ( ) => {
       
         
         <div className="cart-page__content">
+          <div className="cart-sidebar__footer">
+            Total: {totalPrice.toFixed(2)}{' '}
+          </div>
           {cart.length > 0 ? (
+            
             cart.map((item) => {
               return (
                 <>
+                <Link to="/payment" className="btn btn-primary mx-10" style={{"text-align":"center"}}>Get to Payment</Link>
                 <div key={item.codePro} className="cart-page__products">
                   <div className="cart-page__product-image-container">
                     <img
@@ -59,11 +65,11 @@ const CartPage = ( ) => {
                     />
                   </div>
                   <div className="cart-page__product-info">
-                    <p className="cart-page__product-name">{item.nomPro}</p>
+                    <p className="cart-page__product-name">{item.name}</p>
                     <div className="cart-page__prices">
                       <p className="cart-page__product-qty">{item.qty} X</p>
                       <p className="cart-page__product-price">
-                        {formatPrice(item.price)}
+                        {item.price}
                       </p>
                       <p className="cart-page__delete">
                       <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
@@ -71,13 +77,14 @@ const CartPage = ( ) => {
                     </div>
                   </div>
                 </div>
-                <Link to="/payment" className="btn btn-primary mx-10" style={{"text-align":"center"}}>Get to Payment</Link>
+                
 
                 </>
                 
                 
               );
-            })
+            }
+          )
           ) : (
             <div className="cart-sidebar__empty-image-container">
               <img

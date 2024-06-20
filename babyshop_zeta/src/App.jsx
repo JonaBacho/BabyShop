@@ -97,7 +97,7 @@ function App() {
         <Route path="/new-category" element={<AdminNewCategory/>} />
 
       
-        <Route path="*"  element={<Error />}/>
+        <Route path="*"  element={<Home/>}/>
       </Routes>
     </Router>
     

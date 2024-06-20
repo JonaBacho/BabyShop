@@ -63,7 +63,7 @@ const CartSidebar = () => {
                     <div className="cart-sidebar__prices">
                       <p className="cart-sidebar__product-qty">{item.qty} X</p>
                       <p className="cart-sidebar__product-price">
-                        {formatPrice(item.price)}
+                        {item.price}
                       </p>
                       <p className="cart-sidebar__delete">
                         <MdDelete
@@ -85,12 +85,13 @@ const CartSidebar = () => {
             </div>
           )}
         </div>
+        <div className="cart-sidebar__footer">
+          Total: {totalPrice.toFixed(2)}{' '}
+        </div>
         <Link to="/cart" className="btn btn-primary">
           Go to Cart
         </Link>
-        <div className="cart-sidebar__footer">
-          Total: {formatPrice(totalPrice)}{' '}
-        </div>
+        
       </div>
     </div>
   );

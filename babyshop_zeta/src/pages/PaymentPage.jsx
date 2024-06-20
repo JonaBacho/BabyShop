@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './PaymentPage.css';
 // components
@@ -13,7 +13,17 @@ import ScrollToTop from '../utils/ScrollToTop.js';
 
 const PaymentPage = () => {
   const cartItems = useSelector((state) => state.products.cart);
-  const totalPrice = useSelector((state) => state.products.totalPrice);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    let price = 0;
+
+    cartItems.forEach((item) => {
+      price += item.qty * item.price;
+    });
+
+    setTotalPrice(price);
+  }, [cartItems, totalPrice, setTotalPrice]);
 
   const [clientInfo, setClientInfo] = useState({
     name: '',
@@ -134,19 +144,20 @@ const PaymentPage = () => {
                 <img src={item.image} alt={item.name} className="img-fluid" />
                 <div>
                   <p>{item.name}</p>
-                  <p>Quantity: {item.quantity}</p>
+                  <p>Quantity: {item.qty}</p>
                   <p>Unit Price: ${item.price}</p>
-                  <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
+                  <p>Total: ${(item.price * item.qty).toFixed(2)}</p>
                 </div>
               </div>
             ))}
+            
             <div className="total-price">
-              <h3>Total Price: ${totalPrice}</h3>
+              <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
               <div className="form-group">
                 <label>Discount</label>
                 <input type="number" className="form-control" value={discount} onChange={handleDiscountChange} />
               </div>
-              <h3>Price to Pay: ${totalPriceAfterDiscount}</h3>
+              <h3>Price to Pay: ${totalPriceAfterDiscount.toFixed(2)}</h3>
             </div>
           </div>
         </div>

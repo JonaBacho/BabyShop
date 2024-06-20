@@ -35,10 +35,10 @@ const AdminProduct = ({  product }) => {
         <div className="product__footer-prices">
           <span>
             <span className="product__footer-price">
-              {formatPrice(product.price)}
+              {product.price}
             </span>
             <span className="product__footer-price--old">
-              {formatPrice(product.oldPrice)}
+              {product.oldPrice}
             </span>
           </span>
           {/* stars component */}

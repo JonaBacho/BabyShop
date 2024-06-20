@@ -21,43 +21,6 @@ import Footer from '../components/Footer/Footer.jsx';
 import ScrollToTop from '../utils/ScrollToTop.js';
 
 const AllProductsPage = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosClient.get('all/produits');
-    
-        const data = response.data.data;
-
-        const transformedData = data.map(item => ({
-          id: item.codePro,
-          image: item.imageUrl,
-          name: item.nomPro,
-          price: item.prix,
-          oldPrice: item.ancienPrix,
-          stars: item.etoile
-        }));
-    
-        setProducts(transformedData);
-
-        // Affichage ou utilisation de la liste transformée
-      console.log(transformedData);
-      setLoading(false);
-
-      } catch (error) {
-        console.error('Erreur lors de la récupération des données :', error);
-        setLoading(true);
-
-      } 
-    };
-
-    fetchData();
-
-  }, []);
   const _products = [
     {
         id: 1,
@@ -140,6 +103,44 @@ const AllProductsPage = () => {
         stars: 4.9
     }
 ];
+    const [products, setProducts] = useState(_products);
+    const [loading, setLoading] = useState(true);
+    
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosClient.get('all/produits');
+    
+        const data = response.data.data;
+
+        const transformedData = data.map(item => ({
+          id: item.codePro,
+          image: item.imageUrl,
+          name: item.nomPro,
+          price: item.prix,
+          oldPrice: item.ancienPrix,
+          stars: item.etoile
+        }));
+    
+        setProducts(transformedData);
+
+        // Affichage ou utilisation de la liste transformée
+      console.log(transformedData);
+      setLoading(false);
+
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+        setLoading(true);
+
+      } 
+    };
+
+    fetchData();
+
+  }, []);
+ 
 
 
 console.log(products);
