@@ -1,7 +1,11 @@
-import React from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector} from "react-redux";
+
+import Title from '../Title/Title';
+import Product from '../Product/Product';
+import Loading from '../Loading/Loading';
 import AdminProduct from '../AdminProduct/AdminProduct.jsx';
+
 
 const AdminProductContainer = ({ products }) => {
   const [visible, setVisible] = useState(6);
@@ -10,23 +14,39 @@ const AdminProductContainer = ({ products }) => {
   const showMoreProducts = () => {
     setVisible((oldValue) => oldValue + 3);
   };
+
+  if (!loading) {
+    return (
+      <section className="py-5">
+        <div className="container">
+          <Title title="BEST SELLING" />
+          <div className="row">
+            <div className="col-10 mx-auto col-md-6">
+              <Loading />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    
-    <div className="container">
-      <h1 className="text-center my-4">Product Container</h1>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
-        {products.slice(0, visible).map((product) => {
+    <section className="py-5">
+      <div className="container">
+        <Title title="OUR PRODUCTS" />
+        <div className="row">
+          {products.slice(0, visible).map((product) => {
             return (
               <div
                 key={product.id}
-                className="col"
+                className="col-10 col-md-6 col-lg-4 mx-auto"
               >
-                <AdminProduct {...product} />
+                <AdminProduct product={product}/>
               </div>
             );
           })}
-      </div>
-      {visible === products.length ? null : (
+        </div>
+        {visible === products.length ? null : (
           <div className="row">
             <div
               style={{ textAlign: 'center' }}
@@ -38,7 +58,8 @@ const AdminProductContainer = ({ products }) => {
             </div>
           </div>
         )}
-    </div>
+      </div>
+    </section>
   );
 };
 

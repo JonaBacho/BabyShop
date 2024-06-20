@@ -18,7 +18,7 @@ import AdminProductContainer from '../components/AdminProductContainer/AdminProd
 import Topbar from '../components/Topbar.jsx';
 import AdminNavbar from '../components/AdminNavbar/AdminNavbar.jsx';
 
-const _products = [
+const _productss = [
   { id: 1, name: 'Category 1', image: '/src/assets/images/logo_baby.png', count: 10 },
   { id: 2, name: 'Category 2', image: '/src/assets/images/logo_baby.png', count: 15 },
   { id: 3, name: 'Category 3', image: '/src/assets/images/logo_baby.png', count: 8 }
@@ -27,17 +27,16 @@ const _products = [
 
 
 const AdminProductPage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState(_productss);
+    const [loading, setLoading] = useState(true);
     
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('home/produits');
+        const response = await axiosClient.get('all/produits');
     
-
         const data = response.data.data;
 
         const transformedData = data.map(item => ({
@@ -46,8 +45,7 @@ const AdminProductPage = () => {
           name: item.nomPro,
           price: item.prix,
           oldPrice: item.ancienPrix,
-          stars: item.etoile,
-          count: item.qte
+          stars: item.etoile
         }));
     
         setProducts(transformedData);
@@ -76,7 +74,7 @@ const AdminProductPage = () => {
       <button type="button" className="btn btn-primary btn-lg">Refresh</button>
       </div>
       
-      <AdminProductContainer products={_products} />   
+      <AdminProductContainer products={products} />   
     </div>
   );
 };
