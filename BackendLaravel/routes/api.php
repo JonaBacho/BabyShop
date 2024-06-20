@@ -61,6 +61,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware(EnsureGestionnaire::class)->group(function () {
         Route::put('/gestionnaire', [GestionnaireController::class, 'update']);
+        // methode d'ajout de categorie par un gestionnaire
+        Route::post('/gestionnaire/categorie/', [ProduitCategorieController::class, 'create']);
+        Route::post('/gestionnaire/categorieProuits/', [ProduitCategorieController::class, 'createWithProducts']);
+        Route::put('/gestionnaire/categorie/{idCat}', [ProduitCategorieController::class, 'upadate']);
+        Route::delete('/gestionnaire/categorie/{idCat}', [ProduitCategorieController::class, 'delete']);
+        // ajout d'un produit par un gestionnaire
+        Route::post('/gestionnaire/produit/', [ProduitController::class, 'create']);
+        Route::put('/gestionnaire/produit/{codePro}', [ProduitController::class, 'update']);
+        Route::delete('/gestionnaire/produit/{codePro}', [ProduitController::class, 'delete']);
     });
     
 });
